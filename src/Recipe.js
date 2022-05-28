@@ -1,16 +1,15 @@
-const Recipe = ({
-  calories,
-  cuisineType,
-  dishType,
-  image,
-  label,
-  mealType,
-  totalTime,
-}) => {
+const Recipe = ({ cuisineType, dishType, image, label, mealType }) => {
   return (
-    <div>
-      <img src={image}></img>
-      <h1>{label}</h1>
+    <div className="recipe">
+      <div className="imageContainer">
+        <img src={image}></img>
+      </div>
+      <div className="info">
+        <h1>{label}</h1>
+        <p>
+          {cuisineType} - {dishType} - {mealType}
+        </p>
+      </div>
     </div>
   );
 };

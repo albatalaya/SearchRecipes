@@ -5,6 +5,7 @@ import Recipe from "./Recipe";
 function App() {
   const app_id = "0a6ad3c8";
   const app_key = "2299e332cf1301100b176a27b6ce06cd";
+
   const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
 
@@ -21,7 +22,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="searchScreen">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -37,18 +38,18 @@ function App() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submitButton">
+          Submit
+        </button>
       </form>
 
       {recipes.map((recipe) => (
         <Recipe
-          calories={recipe.recipe.calories}
           cuisineType={recipe.recipe.cuisineType}
           dishType={recipe.recipe.dishType}
           image={recipe.recipe.image}
           label={recipe.recipe.label}
           mealType={recipe.recipe.mealType}
-          totalTime={recipe.recipe.totalTime}
         />
       ))}
     </div>
