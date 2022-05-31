@@ -1,10 +1,14 @@
 * {
   box-sizing: border-box;
+  color: #333;
 }
 
 body {
-  background-color: rgb(148, 199, 148);
+  /*background-color: rgb(148, 199, 148);*/
+  background-image: url("https://images.pexels.com/photos/349609/pexels-photo-349609.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
   margin: 0;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .searchScreen {
@@ -14,15 +18,31 @@ body {
 .searchScreen form {
   border-radius: 6px;
   background: white;
-  box-shadow: 0px 0px 12px #aaa, -0px -0px 12px #fff;
+  box-shadow: 0px 0px 12px rgb(99, 99, 99);
   width: 300px;
-  margin: 50px auto 50px auto;
+  margin: 0px auto 50px auto;
   padding: 15px 15px 15px 15px;
   display: block;
 }
 
 .submitButton {
-  margin-left: 5px;
+  margin-right: 20px;
+  float: right;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  justify-content: space-evenly;
+  margin: 0 50px;
+}
+
+.item {
+  margin: 5px;
+  max-width: 200px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 6px;
 }
 
 .recipe {
@@ -30,21 +50,20 @@ body {
   display: block;
   overflow: hidden;
   padding: 25px;
-  border-bottom: #333 2px solid;
+  /*border-bottom: #333 2px solid;*/
 }
 
 .imageContainer {
   clip-path: circle(50% at 50% 50%);
   width: 100px;
   height: 100px;
-  float: left;
-  margin: 0px 20px 0px 10px;
+  display: block;
+  margin: auto;
 }
 
 .recipe img {
   width: 100px;
   min-height: 100px;
-  margin-bottom: 20px;
 }
 
 .info h1 {
@@ -54,4 +73,29 @@ body {
 .info p {
   font-size: 13px;
   font-weight: normal;
+}
+
+.recipeContainer {
+  width: 80vw;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 6px;
+  display: block;
+  margin: auto;
+  padding: 30px;
+}
+
+.recipeFlex {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.recipeContainer img {
+  border-radius: 6px;
+}
+
+.extraInfo {
+  display: inline-block;
+  margin-bottom: auto;
+  margin-top: auto;
 }

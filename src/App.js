@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Recipe from "./Recipe";
 
 function App() {
@@ -8,18 +8,21 @@ function App() {
 
   const [search, setSearch] = useState("");
   const [recipes, setRecipes] = useState([]);
+  const [currentSearch, setCurrentSearch] = useState("lunch"); //example of the first recepies you see at the start
 
   async function requestRecipes() {
-    console.log("kasdkabsdkbakjsd");
     const type = "public";
-    const url = `https://api.edamam.com/api/recipes/v2?type=${type}&q=${search}&app_id=${app_id}&app_key=${app_key}`;
+    const url = `https://api.edamam.com/api/recipes/v2?type=${type}&q=${currentSearch}&app_id=${app_id}&app_key=${app_key}`;
     const res = await fetch(url);
     const json = await res.json();
 
     setRecipes(json.hits);
-
-    console.log(json.hits);
+    setSearch("");
   }
+
+  useEffect(() => {
+    requestRecipes();
+  }, []);
 
   return (
     <div className="searchScreen">
@@ -30,12 +33,15 @@ function App() {
         }}
       >
         <label htmlFor="search">
-          Search Recipes by Key Words
+          <h3>Search Recipes by Key Words</h3>
           <input
             id="search"
             value={search}
             placeholder="Search"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setCurrentSearch(e.target.value);
+            }}
           />
         </label>
         <button type="submit" className="submitButton">
@@ -43,15 +49,20 @@ function App() {
         </button>
       </form>
 
-      {recipes.map((recipe) => (
-        <Recipe
-          cuisineType={recipe.recipe.cuisineType}
-          dishType={recipe.recipe.dishType}
-          image={recipe.recipe.image}
-          label={recipe.recipe.label}
-          mealType={recipe.recipe.mealType}
-        />
-      ))}
+      <div className="list">
+        {recipes.map((recipe) => (
+          <div key={`recipe-${recipe.recipe.uri}`} className="item">
+            <Recipe
+              cuisineType={recipe.recipe.cuisineType}
+              dishType={recipe.recipe.dishType}
+              image={recipe.recipe.image}
+              label={recipe.recipe.label}
+              mealType={recipe.recipe.mealType}
+              uri={recipe.recipe.uri}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
